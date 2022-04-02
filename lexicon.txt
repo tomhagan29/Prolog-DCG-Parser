@@ -1,21 +1,3 @@
-s(s(NP, VP)) --> np(NP), vp(VP).
-np(np(DET, NBAR)) --> det(DET), nbar(NBAR).
-np(np(PRO)) --> pro(PRO).
-vp(vp(V, NP)) --> v(V), np(NP).
-vp(vp(V)) --> v(V).
-nbar(nbar(N)) --> n(N).
-nbar(nbar(JP)) --> jp(JP).
-pp(pp(PREP, NP)) --> prep(PREP), np(NP).
-jp(jp(ADJ, N)) --> adj(ADJ), n(N).
-
-det(det(Word, Num, Person, Role)) --> [Word], {lex(Word, det, Num, Person, Role)}.
-pro(pro(Word, Num, Person, Role)) --> [Word], {lex(Word, pro, Num, Person, Role)}.
-tv(tv(Word, Num, Person, Role)) --> [Word], {lex(Word, tv, Num, Person, Role)}.
-iv(iv(Word, Num, Person, Role)) --> [Word], {lex(Word, iv, Num, Person, Role)}.
-adj(adj(Word, Num, Person, Role)) --> [Word], {lex(Word, adj, Num, Person, Role)}.
-n(n(Word, Num, Person, Role)) --> [Word], {lex(Word, n, Num, Person, Role)}.
-prep(prep(Word, Num, Person, Role)) --> [Word], {lex(Word, prep, Num, Person, Role)}.
-
 
 %% Lexicons
 
@@ -87,6 +69,3 @@ lex(young,adj).
 lex(red,adj).
 lex(short,adj).
 lex(tall,adj).
-
-
-
