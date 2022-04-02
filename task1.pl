@@ -1,3 +1,5 @@
+%% Task 1 - Write a DCG which parses input sentences and outputs a parse. 
+
 s(s(NP, VP)) --> np(NP), vp(VP).
 
 np(np(DET, NBAR, PP)) --> det(DET), nbar(NBAR), pp(PP).

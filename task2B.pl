@@ -22,7 +22,6 @@ np(np(NBAR), Num) --> nbar(NBAR, Num).
 np(np(PRO), Num) --> pro(PRO, Num).
 np(np(PP), Num) --> pp(PP, Num).
 
-
 vp(vp(TV, NP), Num) --> tv(TV, Num), np(NP, _).
 vp(vp(IV, Num)) --> iv(IV, Num).
 
