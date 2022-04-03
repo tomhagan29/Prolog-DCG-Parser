@@ -1,11 +1,20 @@
-s --> np, vp.
-
-np --> det, n.
-
-vp --> tv, np.
-vp --> iv.
-
+s --> np(subject),vp.
+ 
+np(_) --> det,n.
+np(X) --> pro(X).
+ 
+vp --> v,np(object).
+vp --> v.
+ 
 det --> [the].
-n --> [apple].
-tv --> [hire].
-iv --> [falls].
+det --> [a].
+ 
+n --> [woman].
+n --> [man].
+ 
+pro(subject) --> [he].
+pro(subject) --> [she].
+pro(object) --> [him].
+pro(object) --> [her].
+ 
+v --> [shoots].
