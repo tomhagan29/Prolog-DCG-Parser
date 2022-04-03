@@ -1,18 +1,3 @@
-%% Task 2
-%%	The DCG must parse sentences with the following features, some of which appeared earlier in  	lectures or labs, while others are explained further below: 
-%% 
-%%      a.	Transitive and intransitive verbs 
-%%      b.	Common nouns 
-%%      c.	Determiners (e.g., "a", "the", and "two") 
-%%      d.	Subject/object singular/plural pronouns (e.g., "he", "him", "I", "we")  
-%%      e.	Pronouns with grammatical person (e.g., "I", "you", "she") 
-%%      f.	Singular/plural nouns (e.g., chair/chairs) 
-%%      g.	Adjectives and adjectival phrases 
-%%      h.	Prepositions and prepositional phrases 
-%%      i.	Subject-verb agreement for person and number 
-%%      j.	Determiner-common noun number agreement 
-%%      k.	Animacy agreement between the subject and verb 
-
 s(s(NP, VP)) --> np(NP, Num), vp(VP, Num).
 
 np(np(DET, NBAR, PP), Num) --> det(DET, Num), nbar(NBAR, Num), pp(PP).
