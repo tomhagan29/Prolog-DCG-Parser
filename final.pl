@@ -1,29 +1,30 @@
-s(s(NP, VP)) --> np(NP, Num, _, _), vp(VP, Num, _, _).
+s(s(NP, VP)) --> np(NP, Num, Person, subject, Animacy), vp(VP, Num, Person, object, Animacy).
 
-np(np(DET, NBAR, PP), Num, _, _) --> 
-    det(DET, Num), nbar(NBAR, Num), pp(PP, Num, _, _).
+np(np(DET, NBAR, PP), Num, _, _, Animacy) --> 
+    det(DET, Num), nbar(NBAR, Num, Animacy), pp(PP, Num, _, _, Animacy).
 
-np(np(DET, NBAR), Num, _, _) --> 
-    det(DET, Num), nbar(NBAR, Num).
+np(np(DET, NBAR), Num, _, _, Animacy) --> 
+    det(DET, Num), nbar(NBAR, Num, Animacy).
 
-np(np(PRO), Num, Person, SO) --> pro(PRO, Num, Person, SO).
+np(np(PRO), Num, Person, SO, _) --> pro(PRO, Num, Person, SO).
 
-vp(vp(TV, NP), Num, Person, _) --> tv(TV, Num, Person), np(NP, _, _, _).
-vp(vp(IV), Num, Person) --> iv(IV, Num, Person).
+vp(vp(TV, NP), Num, Person, SO, Animacy) --> tv(TV, Num, Person, Animacy), np(NP, _, _, SO, _).
+vp(vp(IV), Num, Person, _, Animacy) --> iv(IV, Num, Person, Animacy).
 
-nbar(nbar(N), Num) --> n(N, Num).
-nbar(nbar(JP), Num) --> jp(JP, Num).
+nbar(nbar(N), Num, Animacy) --> n(N, Num, Animacy).
+nbar(nbar(JP), Num, Animacy) --> jp(JP, Num, Animacy).
 
-pp(pp(PREP, NP), _, _, _) --> prep(PREP), np(NP, _, _, _).
+pp(pp(PREP, NP), _, _, _, _) --> prep(PREP), np(NP, _, _, _, _).
 
-jp(jp(ADJ, JP), Num) --> adj(ADJ), jp(JP, Num).
-jp(jp(ADJ, N), Num) --> adj(ADJ), n(N, Num).
+jp(jp(ADJ, JP), Num, Animacy) --> adj(ADJ), jp(JP, Num, Animacy).
+jp(jp(ADJ, N), Num, Animacy) --> adj(ADJ), n(N, Num, Animacy).
 
 pro(pro(Word), Num, Person, SO) --> [Word], {lex(Word, pro, Num, Person, SO)}.
-tv(tv(Word), Num, Person) --> [Word], {lex(Word, tv, Num, Person)}.
-iv(iv(Word), Num, Person) --> [Word], {lex(Word, iv, Num, Person)}.
+tv(tv(Word), Num, Person, Animacy) --> [Word], {lex(Word, tv, Num, Person, Animacy)}.
+iv(iv(Word), Num, Person, Animacy) --> [Word], {lex(Word, iv, Num, Person, Animacy)}.
+n(n(Word), Num, Animacy) --> [Word], {lex(Word, n, Num, Animacy)}.
 det(det(Word), Num) --> [Word], {lex(Word, det, Num)}.
-n(n(Word), Num) --> [Word], {lex(Word, n, Num)}.
+
 adj(adj(Word)) --> [Word], {lex(Word, adj)}.
 prep(prep(Word)) --> [Word], {lex(Word, prep)}.
 
@@ -49,26 +50,26 @@ lex(you,pro,plural,2,object).
 lex(them,pro,plural,3,object).
 
 %% Verbs
-lex(know,tv,singular,1).
-lex(know,tv,singular,2).
-lex(knows,tv,singular,3).
-lex(know,tv,plural,_).
-lex(see,tv,singular,1).
-lex(see,tv,singular,2).
-lex(sees,tv,singular,3).
-lex(see,tv,plural,_).
-lex(hire,tv,singular,1).
-lex(hire,tv,singular,2).
-lex(hires,tv,singular,3).
-lex(hire,tv,plural,_).
-lex(fall,iv,singular,1).
-lex(fall,iv,singular,2).
-lex(falls,iv,singular,3).
-lex(fall,iv,plural,_).
-lex(sleep,iv,singular,1).
-lex(sleep,iv,singular,2).
-lex(sleeps,iv,singular,3).
-lex(sleep,iv,plural,_).
+lex(know,tv,singular,1,sentient).
+lex(know,tv,singular,2,sentient).
+lex(knows,tv,singular,3,sentient).
+lex(know,tv,plural,_,sentient).
+lex(see,tv,singular,1,sentient).
+lex(see,tv,singular,2,sentient).
+lex(sees,tv,singular,3,sentient).
+lex(see,tv,plural,_,sentient).
+lex(hire,tv,singular,1,sentient).
+lex(hire,tv,singular,2,sentient).
+lex(hires,tv,singular,3,sentient).
+lex(hire,tv,plural,_,sentient).
+lex(fall,iv,singular,1,_).
+lex(fall,iv,singular,2,_).
+lex(falls,iv,singular,3,_).
+lex(fall,iv,plural,_,_).
+lex(sleep,iv,singular,1,sentient).
+lex(sleep,iv,singular,2,sentient).
+lex(sleeps,iv,singular,3,sentient).
+lex(sleep,iv,plural,_,sentient).
 
 %% Determiners
 lex(the,det,_).
@@ -76,16 +77,16 @@ lex(a,det,singular).
 lex(two,det,plural).
 
 %% Nouns
-lex(man,n,singular).
-lex(woman,n,singular).
-lex(apple,n,singular).
-lex(chair,n,singular).
-lex(room,n,singular).
-lex(men,n,plural).
-lex(women,n,plural).
-lex(apples,n,plural).
-lex(chairs,n,plural).
-lex(rooms,n,plural).
+lex(man,n,singular,sentient).
+lex(woman,n,singular,sentient).
+lex(apple,n,singular,insentient).
+lex(chair,n,singular,insentient).
+lex(room,n,singular,insentient).
+lex(men,n,plural,sentient).
+lex(women,n,plural,sentient).
+lex(apples,n,plural,insentient).
+lex(chairs,n,plural,insentient).
+lex(rooms,n,plural,insentient).
 
 %% Preposition
 lex(on,prep).
