@@ -1,8 +1,11 @@
 s --> np, vp.
 
-np --> pro.
+np --> det, n.
 
-vp --> v.
+vp --> tv, np.
+vp --> iv.
 
-pro --> [i].
-v --> [sleep].
+det --> [the].
+n --> [apple].
+tv --> [hire].
+iv --> [falls].
