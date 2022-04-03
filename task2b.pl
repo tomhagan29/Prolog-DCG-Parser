@@ -1,11 +1,11 @@
-s(s(NP, VP)) --> np(NP, Num), vp(VP, Num, _).
+s(s(NP, VP)) --> np(NP, Num, _), vp(VP, Num, _).
 
 np(np(DET, NBAR, PP), Num) --> det(DET, Num), nbar(NBAR, Num), pp(PP).
-np(np(PRO), Num) --> pro(PRO, Num).
 np(np(PP), Num) --> pp(PP, Num).
 np(np(DET, NBAR), Num) --> det(DET, Num), nbar(NBAR, Num).
 np(np(NBAR, PP), Num) --> nbar(NBAR, Num), pp(PP, Num).
 np(np(NBAR), Num) --> nbar(NBAR, Num).
+np(np(PRO), Num, Person) --> pro(PRO, Num, Person).
 
 vp(vp(TV, NP), Num, Person) --> tv(TV, Num, Person), np(NP, _).
 vp(vp(IV), Num, Person) --> iv(IV, Num, Person).
@@ -20,8 +20,8 @@ jp(jp(ADJ, JP), Num) --> adj(ADJ), jp(JP, Num).
 jp(jp(ADJ, N), Num) --> adj(ADJ), n(N, Num).
 
 det(det(Word), Num) --> [Word], {lex(Word, det, Num)}.
-pro(pro(Word), Num) --> [Word], {lex(Word, pro, Num)}.
 n(n(Word), Num) --> [Word], {lex(Word, n, Num)}.
+pro(pro(Word), Num, Person) --> [Word], {lex(Word, pro, Num, Person)}.
 tv(tv(Word), Num, Person) --> [Word], {lex(Word, tv, Num, Person)}.
 iv(iv(Word), Num, Person) --> [Word], {lex(Word, iv, Num, Person)}.
 adj(adj(Word)) --> [Word], {lex(Word, adj)}.
@@ -54,22 +54,22 @@ lex(sleeps,iv,singular,3).
 lex(sleep,iv,plural,_).
 
 %% Pronouns
-lex(i,pro,singular).
-lex(you,pro,singular).
-lex(he,pro,singular).
-lex(she,pro,singular).
-lex(it,pro,singular).
-lex(we,pro,plural).
-lex(you,pro,plural).
-lex(they,pro,plural).
-lex(me,pro,singular).
-lex(you,pro,singular).
-lex(him,pro,singular).
-lex(her,pro,singular).
-lex(it,pro,singular).
-lex(us,pro,plural).
-lex(you,pro,plural).
-lex(them,pro,plural).
+lex(i,pro,singular,1).
+lex(you,pro,singular,2).
+lex(he,pro,singular,3).
+lex(she,pro,singular,3).
+lex(it,pro,singular,3).
+lex(we,pro,plural,1).
+lex(you,pro,plural,2).
+lex(they,pro,plural,3).
+lex(me,pro,singular,1).
+lex(you,pro,singular,2).
+lex(him,pro,singular,3).
+lex(her,pro,singular,3).
+lex(it,pro,singular,3).
+lex(us,pro,plural,1).
+lex(you,pro,plural,2).
+lex(them,pro,plural,3).
 
 
 %% Determiners
