@@ -2,7 +2,7 @@
 %% Lexicons
 
 %% Pronouns
-lex(i, pro, singular, 1, subject).
+lex(i,pro,singular,1,subject).
 lex(you,pro,singular,2,subject).
 lex(he,pro,singular,3,subject).
 lex(she,pro,singular,3,subject).
