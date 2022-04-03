@@ -1,13 +1,13 @@
 %% singular and plural words
 
-s(s(NP, VP)) --> np(NP, Num), vp(VP, Num).
+s(s(NP, VP)) --> np(NP, Num, _), vp(VP, Num).
 
 np(np(DET, NBAR, PP), Num) --> det(DET, Num), nbar(NBAR, Num), pp(PP, Num).
 np(np(DET, NBAR), Num) --> det(DET, Num), nbar(NBAR, Num).
 np(np(NBAR, PP), Num) --> nbar(NBAR, Num), pp(PP, Num).
 np(np(NBAR), Num) --> nbar(NBAR, Num).
-np(np(PRO), Num) --> pro(PRO, Num).
 np(np(PP), Num) --> pp(PP, Num).
+np(np(PRO), Num, SO) --> pro(PRO, Num, SO).
 
 vp(vp(TV, NP), Num) --> tv(TV, Num), np(NP, _).
 vp(vp(IV), Num) --> iv(IV, Num).
@@ -20,8 +20,8 @@ pp(pp(PREP, NP), Num) --> prep(PREP), np(NP, Num).
 jp(jp(ADJ, JP), Num) --> adj(ADJ), jp(JP, Num).
 jp(jp(ADJ, N), Num) --> adj(ADJ), n(N, Num).
 
+pro(pro(Word), Num, SO) --> [Word], {lex(Word, pro, Num, SO)}.
 det(det(Word), Num) --> [Word], {lex(Word, det, Num)}.
-pro(pro(Word), Num) --> [Word], {lex(Word, pro, Num)}.
 tv(tv(Word), Num) --> [Word], {lex(Word, tv, Num)}.
 iv(iv(Word), Num) --> [Word], {lex(Word, iv, Num)}.
 n(n(Word), Num) --> [Word], {lex(Word, n, Num)}.
@@ -32,22 +32,22 @@ prep(prep(Word)) --> [Word], {lex(Word, prep)}.
 %% Lexicons
 
 %% Pronouns
-lex(i,pro,singular).
-lex(you,pro,singular).
-lex(he,pro,singular).
-lex(she,pro,singular).
-lex(it,pro,singular).
-lex(we,pro,plural).
-lex(you,pro,plural).
-lex(they,pro,plural).
-lex(me,pro,singular).
-lex(you,pro,singular).
-lex(him,pro,singular).
-lex(her,pro,singular).
-lex(it,pro,singular).
-lex(us,pro,plural).
-lex(you,pro,plural).
-lex(them,pro,plural).
+lex(i,pro,singular,subject).
+lex(you,pro,singular,subject).
+lex(he,pro,singular,subject).
+lex(she,pro,singular,subject).
+lex(it,pro,singular,subject).
+lex(we,pro,plural,subject).
+lex(you,pro,plural,subject).
+lex(they,pro,plural,subject).
+lex(me,pro,singular,object).
+lex(you,pro,singular,object).
+lex(him,pro,singular,object).
+lex(her,pro,singular,object).
+lex(it,pro,singular,object).
+lex(us,pro,plural,object).
+lex(you,pro,plural,object).
+lex(them,pro,plural,object).
 
 %% Verbs
 lex(know,tv,singular).

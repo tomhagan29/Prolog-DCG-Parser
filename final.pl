@@ -1,11 +1,11 @@
-%% singular and plural words
-
 s(s(NP, VP)) --> np(NP, Num, _, _), vp(VP, Num, _, _).
 
 np(np(DET, NBAR, PP), Num, _, _) --> 
     det(DET, Num), nbar(NBAR, Num), pp(PP, Num, _, _).
+
 np(np(DET, NBAR), Num, _, _) --> 
     det(DET, Num), nbar(NBAR, Num).
+
 np(np(PRO), Num, Person, SO) --> pro(PRO, Num, Person, SO).
 
 vp(vp(TV, NP), Num, Person, _) --> tv(TV, Num, Person), np(NP, _, _, _).
