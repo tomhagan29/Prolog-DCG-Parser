@@ -8,8 +8,8 @@ np(np(DET, NBAR), Num, _, _, Animacy) -->
 
 np(np(PRO), Num, Person, SO, _) --> pro(PRO, Num, Person, SO).
 
-vp(vp(TV, NP), Num, Person, SO, Animacy) --> tv(TV, Num, Person, Animacy), np(NP, _, _, SO, _).
-vp(vp(IV), Num, Person, _, Animacy) --> iv(IV, Num, Person, Animacy).
+vp(vp(TV, NP), Num, Person, SO, Animacy) --> v(TV, Num, Person, Animacy), np(NP, _, _, SO, _).
+vp(vp(IV), Num, Person, _, Animacy) --> v(IV, Num, Person, Animacy).
 
 nbar(nbar(N), Num, Animacy) --> n(N, Num, Animacy).
 nbar(nbar(JP), Num, Animacy) --> jp(JP, Num, Animacy).
@@ -20,8 +20,8 @@ jp(jp(ADJ, JP), Num, Animacy) --> adj(ADJ), jp(JP, Num, Animacy).
 jp(jp(ADJ, N), Num, Animacy) --> adj(ADJ), n(N, Num, Animacy).
 
 pro(pro(Word), Num, Person, SO) --> [Word], {lex(Word, pro, Num, Person, SO)}.
-tv(tv(Word), Num, Person, Animacy) --> [Word], {lex(Word, tv, Num, Person, Animacy)}.
-iv(iv(Word), Num, Person, Animacy) --> [Word], {lex(Word, iv, Num, Person, Animacy)}.
+v(v(Word), Num, Person, Animacy) --> [Word], {lex(Word, tv, Num, Person, Animacy)}.
+v(v(Word), Num, Person, Animacy) --> [Word], {lex(Word, iv, Num, Person, Animacy)}.
 n(n(Word), Num, Animacy) --> [Word], {lex(Word, n, Num, Animacy)}.
 det(det(Word), Num) --> [Word], {lex(Word, det, Num)}.
 
@@ -69,7 +69,7 @@ lex(fall,iv,plural,_,_).
 lex(sleep,iv,singular,1,sentient).
 lex(sleep,iv,singular,2,sentient).
 lex(sleeps,iv,singular,3,sentient).
-lex(sleep,iv,plural,_,sentient).
+%% lex(sleep,iv,plural,_,sentient).
 
 %% Determiners
 lex(the,det,_).
@@ -105,11 +105,11 @@ lex(tall,adj).
 
 %% 1. the woman sees the apples
 %% ?- s(Tree, [the, woman, sees, the, apples], []).
-%% Tree = s(np(det(the), nbar(n(woman))), vp(tv(sees), np(det(the), nbar(n(apples))))) .
+%% Tree = s(np(det(the), nbar(n(woman))), vp(v(sees), np(det(the), nbar(n(apples))))) .
 
 %% 2. a woman knows him
 %% ?- s(Tree, [a, woman, knows, him], []).
-%% Tree = s(np(det(a), nbar(n(woman))), vp(tv(knows), np(pro(him)))) .
+%% Tree = s(np(det(a), nbar(n(woman))), vp(v(knows), np(pro(him)))) .
 
 %% 3. *two woman hires a man
 %% ?- s(Tree, [two, woman, hires, a, man], []).
@@ -117,11 +117,11 @@ lex(tall,adj).
 
 %% 4. two women hire a man
 %% ?- s(Tree, [two, women, hire, a, man], []).
-%% Tree = s(np(det(two), nbar(n(women))), vp(tv(hire), np(det(a), nbar(n(man))))) .
+%% Tree = s(np(det(two), nbar(n(women))), vp(v(hire), np(det(a), nbar(n(man))))) .
 
 %% 5. she knows her
 %% ?- s(Tree, [she, knows, her], []).
-%% Tree = s(np(pro(she)), vp(tv(knows), np(pro(her)))) .
+%% Tree = s(np(pro(she)), vp(v(knows), np(pro(her)))) .
 
 %% 6. *she know the man
 %% ?- s(Tree, [she, know, the, man], []).
@@ -133,11 +133,11 @@ lex(tall,adj).
 
 %% 8. we see the apple
 %% ?- s(Tree, [we, see, the, apple], []).
-%% Tree = s(np(pro(we)), vp(tv(see), np(det(the), nbar(n(apple))))) .
+%% Tree = s(np(pro(we)), vp(v(see), np(det(the), nbar(n(apple))))) .
 
 %% 9. i know a short man
 %% ?- s(Tree, [i, know, a, short, man], []).
-%% Tree = s(np(pro(i)), vp(tv(know), np(det(a), nbar(jp(adj(short), n(man)))))) .
+%% Tree = s(np(pro(i)), vp(v(know), np(det(a), nbar(jp(adj(short), n(man)))))) .
 
 %% 10. *he hires they
 %% ?- s(Tree, [he, hires, they], []).
@@ -145,7 +145,7 @@ lex(tall,adj).
 
 %% 11. two apples fall
 %% ?- s(Tree, [two, apples, fall], []).
-%% Tree = s(np(det(two), nbar(n(apples))), vp(iv(fall))) .
+%% Tree = s(np(det(two), nbar(n(apples))), vp(v(fall))) .
 
 %% 12. the apple falls
 %% ?- s(Tree, [the, apple, falls], []).
@@ -153,19 +153,19 @@ lex(tall,adj).
 
 %% 13. the apples fall
 %% ?- s(Tree, [the, apples, fall], []).
-%% Tree = s(np(det(the), nbar(n(apples))), vp(iv(fall))) .
+%% Tree = s(np(det(the), nbar(n(apple))), vp(v(falls))) .
 
 %% 14. i sleep
 %% ?- s(Tree, [i, sleep], []).
-%% Tree = s(np(pro(i)), vp(iv(sleep))) .
+%% Tree = s(np(pro(i)), vp(v(sleep))) .
 
 %% 15. you sleep
 %% ?- s(Tree, [you, sleep], []).
-%% Tree = s(np(pro(you)), vp(iv(sleep))) .
+%% Tree = s(np(pro(you)), vp(v(sleep))) .
 
 %% 16. she sleeps
 %% ?- s(Tree, [she, sleeps], []).
-%% Tree = s(np(pro(she)), vp(iv(sleeps))).
+%% Tree = s(np(pro(she)), vp(v(sleeps))).
 
 %% 17. *he sleep
 %% ?- s(Tree, [he, sleep], []).
@@ -185,7 +185,7 @@ lex(tall,adj).
 
 %% 21. the young tall man knows the old short woman
 %% ?- s(Tree, [the, young, tall, man, knows, the, old, short, woman], []).
-%% Tree = s(np(det(the), nbar(jp(adj(young), jp(adj(tall), n(man))))), vp(tv(knows), np(det(the), nbar(jp(adj(old), jp(adj(short), n(woman))))))) .
+%% Tree = s(np(det(the), nbar(jp(adj(young), jp(adj(tall), n(man))))), vp(v(knows), np(det(the), nbar(jp(adj(old), jp(adj(short), n(woman))))))) .
 
 %% 22. *a man tall knows the short woman
 %% ?- s(Tree, [a, man, tall, knows, the, short, woman], []).
@@ -193,7 +193,7 @@ lex(tall,adj).
 
 %% 23. a man on a chair sees a woman in a room
 %% ?- s(Tree, [a, man, on, a, chair, sees, a, woman, in, a, room], []).
-%% Tree = s(np(det(a), nbar(n(man)), pp(prep(on), np(det(a), nbar(n(chair))))), vp(tv(sees), np(det(a), nbar(n(woman)), pp(prep(in), np(det(a), nbar(n(room))))))) .
+%% Tree = s(np(det(a), nbar(n(man)), pp(prep(on), np(det(a), nbar(n(chair))))), vp(v(sees), np(det(a), nbar(n(woman)), pp(prep(in), np(det(a), nbar(n(room))))))) .
 
 %% 24. *a man on a chair sees a woman a room in
 %% ?- s(Tree, [a, man, on, a, chair, sees, a, woman, a, room, in], []).
@@ -201,19 +201,19 @@ lex(tall,adj).
 
 %% 25. the tall young woman in a room on the chair in a room in the room sees the red apples under the chair.
 %% ?- s(Tree, [the, tall, young, woman, in, a, room, on, the, chair, in, a, room, in, the, room, sees, the, red, apples, under, the, chair], []).
-%% Tree = s(np(det(the), nbar(jp(adj(tall), jp(adj(young), n(woman)))), pp(prep(in), np(det(a), nbar(n(room)), pp(prep(on), np(det(the), nbar(n(chair)), pp(prep(in), np(det(a), nbar(n(...)), pp(prep(...), np(..., ...))))))))), vp(tv(sees), np(det(the), nbar(jp(adj(red), n(apples))), pp(prep(under), np(det(the), nbar(n(chair))))))) .
+%% Tree = s(np(det(the), nbar(jp(adj(tall), jp(adj(young), n(woman)))), pp(prep(in), np(det(a), nbar(n(room)), pp(prep(on), np(det(the), nbar(n(chair)), pp(prep(in), np(det(a), nbar(n(...)), pp(prep(...), np(..., ...))))))))), vp(v(sees), np(det(the), nbar(jp(adj(red), n(apples))), pp(prep(under), np(det(the), nbar(n(chair))))))) .
 
 %% 26. the woman sees the apples
 %% ?- s(Tree, [the, woman, sees, the, apples], []).
-%% Tree = s(np(det(the), nbar(n(woman))), vp(tv(sees), np(det(the), nbar(n(apples))))) .
+%% Tree = s(np(det(the), nbar(n(woman))), vp(v(sees), np(det(the), nbar(n(apples))))) .
 
 %% 27. a woman knows him
 %% ?- s(Tree, [a, woman, knows, him], []).
-%% Tree = s(np(det(a), nbar(n(woman))), vp(tv(knows), np(pro(him)))) .
+%% Tree = s(np(det(a), nbar(n(woman))), vp(v(knows), np(pro(him)))) .
 
 %% 28. the man sleeps
 %% ?- s(Tree, [the, man, sleeps], []).
-%% Tree = s(np(det(the), nbar(n(man))), vp(iv(sleeps))) .
+%% Tree = s(np(det(the), nbar(n(man))), vp(v(sleeps))) .
 
 %% 29. *the room sleeps
 %% ?- s(Tree, [the, room, sleeps], []).
@@ -229,8 +229,8 @@ lex(tall,adj).
 
 %% 32. the apple falls
 %% ?- s(Tree, [the, apple, falls], []).
-%% Tree = s(np(det(the), nbar(n(apple))), vp(iv(falls))) .
+%% Tree = s(np(det(the), nbar(n(apple))), vp(v(falls))) .
 
 %% 33. the man falls
 %% ?- s(Tree, [the, man, falls], []).
-%% Tree = s(np(det(the), nbar(n(man))), vp(iv(falls))) .
+%% Tree = s(np(det(the), nbar(n(man))), vp(v(falls))) .
