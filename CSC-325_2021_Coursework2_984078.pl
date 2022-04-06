@@ -29,9 +29,6 @@ adj(adj(Word)) --> [Word], {lex(Word, adj)}.
 prep(prep(Word)) --> [Word], {lex(Word, prep)}.
 
 
-%% Lexicons
-
-%% Pronouns
 lex(i,pro,singular,1,subject).
 lex(you,pro,singular,2,subject).
 lex(he,pro,singular,3,subject).
@@ -49,7 +46,7 @@ lex(us,pro,plural,1,object).
 lex(you,pro,plural,2,object).
 lex(them,pro,plural,3,object).
 
-%% Nouns
+
 %% Added Person to nouns to solve conflicts not included in test cases
 %% i.e. s(Tree, [the, man, sleep], [])
 
@@ -64,7 +61,7 @@ lex(apples,n,plural,3,insentient).
 lex(chairs,n,plural,3,insentient).
 lex(rooms,n,plural,3,insentient).
 
-%% Verbs
+
 lex(know,tv,singular,1,sentient).
 lex(know,tv,singular,2,sentient).
 lex(knows,tv,singular,3,sentient).
@@ -86,19 +83,14 @@ lex(sleep,iv,singular,2,sentient).
 lex(sleeps,iv,singular,3,sentient).
 %% lex(sleep,iv,plural,_,sentient).
 
-%% Determiners
 lex(the,det,_).
 lex(a,det,singular).
 lex(two,det,plural).
 
-
-
-%% Preposition
 lex(on,prep).
 lex(in,prep).
 lex(under,prep).
 
-%% Adjective
 lex(old,adj).
 lex(young,adj).
 lex(red,adj).
@@ -205,7 +197,8 @@ lex(tall,adj).
 %% false.
 
 %% 25. the tall young woman in a room on the chair in a room in the room sees the red apples under the chair.
-%% ?- s(Tree, [the, tall, young, woman, in, a, room, on, the, chair, in, a, room, in, the, room, sees, the, red, apples, under, the, chair], []).
+%% ?- 
+
 %% Tree = s(np(det(the), nbar(jp(adj(tall), jp(adj(young), n(woman)))), pp(prep(in), np(det(a), nbar(n(room)), pp(prep(on), np(det(the), nbar(n(chair)), pp(prep(in), np(det(a), nbar(n(...)), pp(prep(...), np(..., ...))))))))), vp(v(sees), np(det(the), nbar(jp(adj(red), n(apples))), pp(prep(under), np(det(the), nbar(n(chair))))))) .
 
 %% 26. the woman sees the apples
